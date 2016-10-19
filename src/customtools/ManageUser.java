@@ -1,6 +1,5 @@
 package customtools;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,11 +7,11 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
+import Utilities.HashPassword;
 import customtools.DBUtil;
 import model.Dcuuser;
 
 public class ManageUser {
-
 
 	public static Dcuuser getUser(long userID) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -34,7 +33,6 @@ public class ManageUser {
 			em.close();
 		}
 	}
-	
 
 	public static void update(Dcuuser user) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -82,12 +80,12 @@ public class ManageUser {
 		return user;
 
 	}
-	
-	public static List <Dcuuser> getUserList() {
+
+	public static List<Dcuuser> getUserList() {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		String qString = "Select u from Harrisonuser u";
 		TypedQuery<Dcuuser> q = em.createQuery(qString, Dcuuser.class);
-		List <Dcuuser> userList = null;
+		List<Dcuuser> userList = null;
 		try {
 			userList = q.getResultList();
 		} catch (NoResultException e) {
@@ -101,6 +99,7 @@ public class ManageUser {
 
 	public static Dcuuser isValidUser(String email, String password) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		password = HashPassword.Hash(email, password);
 		String qString = "Select b from Harrisonuser b " + "where b.email = :email and b.password = :pass";
 		TypedQuery<Dcuuser> q = em.createQuery(qString, Dcuuser.class);
 		Dcuuser user = null;
@@ -119,7 +118,5 @@ public class ManageUser {
 		return user;
 
 	}
-
-
 
 }
