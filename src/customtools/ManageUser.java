@@ -66,7 +66,7 @@ public class ManageUser {
 
 	public static Dcuuser getUserByEmail(String email) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String qString = "Select u from Harrisonuser u " + "where u.email = :email";
+		String qString = "Select u from Dcuuser u " + "where u.email = :email";
 		TypedQuery<Dcuuser> q = em.createQuery(qString, Dcuuser.class);
 		q.setParameter("email", email);
 		Dcuuser user = null;
@@ -83,7 +83,7 @@ public class ManageUser {
 
 	public static List<Dcuuser> getUserList() {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String qString = "Select u from Harrisonuser u";
+		String qString = "Select u from Dcuuser u";
 		TypedQuery<Dcuuser> q = em.createQuery(qString, Dcuuser.class);
 		List<Dcuuser> userList = null;
 		try {
@@ -100,7 +100,7 @@ public class ManageUser {
 	public static Dcuuser isValidUser(String email, String password) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		password = HashPassword.Hash(email, password);
-		String qString = "Select b from Harrisonuser b " + "where b.email = :email and b.password = :pass";
+		String qString = "Select b from Dcuuser b " + "where b.email = :email and b.passwordhash = :pass";
 		TypedQuery<Dcuuser> q = em.createQuery(qString, Dcuuser.class);
 		Dcuuser user = null;
 		q.setParameter("email", email);
