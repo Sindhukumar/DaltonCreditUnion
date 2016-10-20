@@ -1,6 +1,8 @@
 
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,7 +44,9 @@ public class AccountServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		String action = request.getParameter("action");
-		
+		 Dcuuser user = (Dcuuser) session.getAttribute("user");
+		 float userid = user.getUserid();
+		 
 		if(action.equalsIgnoreCase("Close")){
 			String id = request.getParameter("Accountid");
 			long accountid =Long.parseLong(id);
@@ -50,6 +54,7 @@ public class AccountServlet extends HttpServlet {
 			account.setStatus(0);
 			ManageAccount.update(account);
 			System.out.println("Account updated");
+			
 			
 		}
 		
@@ -63,6 +68,12 @@ public class AccountServlet extends HttpServlet {
 			
 			
 	}
+		String nextURL ="/AccountHome.jsp";
+		List <Dcuaccount> accounts = ManageAccount.getAllAccount(userid);
+		session.setAttribute("accounts", accounts);
+		response.sendRedirect(request.getContextPath() + nextURL);
+		
+		
 	}
 
 }
