@@ -89,8 +89,8 @@ public class AddAccount extends HttpServlet {
 				account.setType(type);
 				account.setDcuuser(dcuuser);
 				ManageAccount.add(account);
-				
 				nextUrl = "/AccountHome.jsp";
+				
 			}
 			else{
 				nextUrl = "/Login.jsp";
