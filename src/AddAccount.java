@@ -93,10 +93,14 @@ public class AddAccount extends HttpServlet {
 				account.setType(type);
 				account.setDcuuser(dcuuser);
 				ManageAccount.add(account);
+<<<<<<< HEAD
 				
 				List <Dcuaccount> accounts = ManageAccount.getAllAccount(dcuuser.getUserid());
 				session.setAttribute("accounts", accounts);
+=======
+>>>>>>> 51b0eb9a3395ba2405b8da4b868e24b9761fbf73
 				nextUrl = "/AccountHome.jsp";
+				
 			}
 			else{
 				nextUrl = "/Login.jsp";

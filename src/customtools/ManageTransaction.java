@@ -27,7 +27,7 @@ public class ManageTransaction {
 	}
 
 	
-    public static List<Dcutransaction >getTransaction (Integer accountid){
+    public static List<Dcutransaction >getTransaction (long accountid){
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String qString = "select t from Dcutransaction  t where t.dcuaccount.accountid =:accountid";
      
@@ -47,17 +47,18 @@ public class ManageTransaction {
 	
 	
 	
-	public static long getDeposit(Integer type,Integer accountid)
+	public static long getDepositWithdrawal(long type, long accountid)
 	{
 
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String qString = "SELECT count(t.transactionid) FROM Dcutransaction t where t.type = :type AND  t.dcuaccount.accountid = :accountid";
+		String qString = "SELECT SUM(t.amount) FROM Dcutransaction t where t.type = :type AND  t.dcuaccount.accountid = :accountid";
 
-		long numberDeposit = 0l;
+		long totalamount = 0l;
 		try{
 			TypedQuery<Long> query = em.createQuery(qString, Long.class);
 			query.setParameter("type", type);
-			numberDeposit = query.getSingleResult();
+			query.setParameter("accountid", accountid);
+			totalamount = query.getSingleResult();
 
 		}catch (Exception e){
 			e.printStackTrace();
@@ -65,27 +66,31 @@ public class ManageTransaction {
 		finally{
 			em.close();
 		}
-		return numberDeposit;
+		return totalamount;
 	}
 	
-	public static long getWithdrawal(Integer type,Integer accountid)
-	{
-
-		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String qString = "SELECT count(t.transactionid) FROM Dcutransaction t where t.type = :type AND  t.dcuaccount.accountid = :accountid";
-
-		long numberWithdrawal = 0l;
-		try{
-			TypedQuery<Long> query = em.createQuery(qString, Long.class);
-			query.setParameter("type", type);
-			numberWithdrawal = query.getSingleResult();
-
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-		finally{
-			em.close();
-		}
-		return numberWithdrawal;
-	}
+//	public static long getWithdrawal(Integer accountid)
+//	{
+//
+//		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//		String qString = "SELECT count(t.transactionid) FROM Dcutransaction t where t.type = :type AND  t.dcuaccount.accountid = :accountid";
+//
+//		long numberWithdrawal = 0l;
+//		try{
+//			TypedQuery<Long> query = em.createQuery(qString, Long.class);
+//			query.setParameter("type", 1);
+//			numberWithdrawal = query.getSingleResult();
+//
+//		}catch (Exception e){
+//			e.printStackTrace();
+//		}
+//		finally{
+//			em.close();
+//		}
+//		return numberWithdrawal;
+//	}
+//	
+	
+	
+	
 }

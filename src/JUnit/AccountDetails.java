@@ -18,7 +18,7 @@ public class AccountDetails {
 		List<Dcuaccount> ac =ManageAccount.getAllAccount(userid);
 		
 		for(Dcuaccount s : ac){
-			System.out.println(""Account number : "+ s.getAccountid());
+			System.out.println("Account number : "+ s.getAccountid());
 		}
 		
 	}

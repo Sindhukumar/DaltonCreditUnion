@@ -36,8 +36,9 @@
 					<td><c:out value="${account.dcuuser.name}" /></td>
 					<td><c:out value="${account.accountid}" /></td>
 					<td><c:out value="${account.type}" /></td>
+					
 					<td> <form action ="TransactMediator" method="post">
-							<input type="hidden" name="Accountid" value="<c:out value="${account.accountid}"/>"> 
+							<input type="hidden" name="accountid" value="<c:out value="${account.accountid}"/>"> 
 							<input type="hidden" name="action" value="Transact">
 							 <input type="submit" value="Transact"> 
 							 </form> </td>

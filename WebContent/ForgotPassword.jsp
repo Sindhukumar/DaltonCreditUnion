@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login</title>
+<title>Forgot Password</title>
 <script>
 function validateForm() {
-    var a = document.forms["LoginForm"]["useremail"].value;
-    var b = document.forms["LoginForm"]["userpassword"].value;
+    var a = document.forms["PasswordForm"]["useremail"].value;
+    var b = document.forms["PasswordForm"]["userpassword"].value;
+    var c = document.forms["PasswordForm"]["confirmpassword"].value;
 
     if (a == null || a == "") {
         alert("Email must be filled out");
@@ -22,6 +23,10 @@ function validateForm() {
     	alert("Enter a valid email address");
         return false;
     }
+    if (b != c ) {
+        alert("Password does not match");
+        return false;
+    }
 }
 function validateEmail(email) {
 	  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -30,24 +35,28 @@ function validateEmail(email) {
 </script>
 </head>
 <body>
-
-
-	<center>
-		<br> <br> <br> <br>
-		<br> <br> <br> <br>
-	<%if("nomatch".equalsIgnoreCase(request.getParameter("error"))){ %>
-	<font color="red">Email and Password does not match.</font>
-	<%} %>
 	<br>
-		<form name="LoginForm" action="LoginServlet" method="post" onsubmit="return validateForm()">
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<center>
+	<%if("notfound".equalsIgnoreCase(request.getParameter("error"))){ %>
+	<font color="red">Email not found.</font>
+	<%} %>
+		<form name="PasswordForm" action="ForgotPassword" method="post" onsubmit="return validateForm()">
 
-			Email:<input type="text" name="useremail" id="useremail"> <br>
-			<br> Password: <input type="password" name="userpassword"
-				id="userpassword"> <br> <br> <input type="submit"
+			            Email: <input type="text" name="useremail" id="useremail"> <br>
+			<br> New Password: <input type="password" name="userpassword"
+				id="userpassword"> <br> 
+				confirm Password: <input type="password" name="confirmpassword"
+				id="confirmpassword"> <br>
+				<br> <input type="submit"
 				value="Submit" id="submit" />
 		</form>
-		<a href="AddNewAccount.jsp">New User?</a><br>
-		<a href="ForgotPassword.jsp">Forgot Password?</a>
 	</center>
 </body>
 </html>
