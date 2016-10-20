@@ -2,6 +2,7 @@
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -65,6 +66,9 @@ public class AddAccount extends HttpServlet {
 			account.setDcuuser(dcuuser);
 			ManageAccount.add(account);
 			
+			List <Dcuaccount> accounts = ManageAccount.getAllAccount(dcuuser.getUserid());
+			session.setAttribute("accounts", accounts);
+			
 			nextUrl = "/AccountHome.jsp";
 		}
 		else{
@@ -90,6 +94,8 @@ public class AddAccount extends HttpServlet {
 				account.setDcuuser(dcuuser);
 				ManageAccount.add(account);
 				
+				List <Dcuaccount> accounts = ManageAccount.getAllAccount(dcuuser.getUserid());
+				session.setAttribute("accounts", accounts);
 				nextUrl = "/AccountHome.jsp";
 			}
 			else{
