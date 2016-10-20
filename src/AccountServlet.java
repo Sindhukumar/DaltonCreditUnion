@@ -65,7 +65,7 @@ public class AccountServlet extends HttpServlet {
 			account.setStatus(1);
 			ManageAccount.update(account);
 			System.out.println("Account Reopened");
-			
+			System.out.println("account status " +account.getStatus());
 			
 	}
 		String nextURL ="/AccountHome.jsp";
