@@ -10,7 +10,7 @@
 	<div>
 		<form action="AddAccount" method="post">
 			Select Account Type
-			</br>Savings Account: <input type = "radio" name = "accountType" onclick = \"getAnswer('Savings') value="Savings">
+			</br>Savings Account: <input type = "radio" name = "accountType" onclick = \"getAnswer('Savings') value="Savings" checked>
 			</br>Checking Account: <input type = "radio" name = "accountType" onclick = \"getAnswer('Checking') value="Checking">
 			</br><input type="submit" value="Add">
 		</form>
