@@ -349,3 +349,4 @@ INSERT INTO DCUTransaction (accountID,amount,type,transactionDate) VALUES (1,141
 INSERT INTO DCUTransaction (accountID,amount,type,transactionDate) VALUES (8,4598,0,'11-Jan-2017');
 INSERT INTO DCUTransaction (accountID,amount,type,transactionDate) VALUES (33,4459,0,'24-Nov-2016');
 
+update dcuuser set passwordhash='feea72dc67a25559cc6044e845f298f6758b1007c7f28a4827d0efedb2902458';
