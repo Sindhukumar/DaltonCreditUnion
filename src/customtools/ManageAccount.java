@@ -15,6 +15,20 @@ import model.Dcuaccount;
 
 public class ManageAccount {
 	
+	public static void add(Dcuaccount account) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		try {
+			trans.begin();
+			em.persist(account);
+			trans.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			trans.rollback();
+		} finally {
+			em.close();
+		}
+	}
 	
 	 public static void update(Dcuaccount account) {
 		 EntityManager em = DBUtil.getEmFactory().createEntityManager();
