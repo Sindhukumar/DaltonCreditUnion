@@ -74,7 +74,7 @@ public class AddAccount extends HttpServlet {
 			String passwordhash = HashPassword.Hash(email,password);
 			String phone = request.getParameter("phone");
 			
-			if(ManageUser.isValidUser(email, passwordhash) == null){
+			if(ManageUser.getUserByEmail(email) == null){
 				Dcuuser dcuuser = new Dcuuser();
 				dcuuser.setEmail(email);
 				dcuuser.setName(name);
