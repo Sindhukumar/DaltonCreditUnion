@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import customtools.ManageAccount;
+import model.Dcuaccount;
+import model.Dcuuser;
+
 /**
  * Servlet implementation class AccountServlet
  */
@@ -40,6 +44,12 @@ public class AccountServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		
 		if(action.equalsIgnoreCase("Close")){
+			String id = request.getParameter("Accountid");
+			long accountid =Long.parseLong(id);
+			Dcuaccount account =ManageAccount.getAccount(accountid);
+			account.setStatus(0);
+			ManageAccount.update(account);
+			System.out.println("Account updated");
 			
 		}
 		
