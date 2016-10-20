@@ -54,6 +54,12 @@ public class AccountServlet extends HttpServlet {
 		}
 		
 		if(action.equalsIgnoreCase("Reopen")){
+			String id = request.getParameter("Accountid");
+			long accountid =Long.parseLong(id);
+			Dcuaccount account =ManageAccount.getAccount(accountid);
+			account.setStatus(1);
+			ManageAccount.update(account);
+			System.out.println("Account Reopened");
 			
 			
 	}

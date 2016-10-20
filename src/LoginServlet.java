@@ -53,6 +53,8 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		if (user != null) {
 			session.setAttribute("user", user);
+			float userid = user.getUserid();
+			
 			nextURL = "/AccountHome.jsp";
 		}
 
