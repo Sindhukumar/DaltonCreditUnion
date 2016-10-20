@@ -65,4 +65,24 @@ public class ManageAccount {
 	        
 	        return account;
 	    }
+	 public static List<Dcuaccount> getAllAccount(float userid) {
+		 EntityManager em = DBUtil.getEmFactory().createEntityManager();
+	       String qString = "SELECT s FROM Dcuaccount s where s.dcuuser.userid= :userid";
+	  
+	       TypedQuery<Dcuaccount> query = em.createQuery(qString,Dcuaccount.class);
+           query.setParameter("userid", userid);
+           List <Dcuaccount> account =null;
+	        try{
+	            
+	           account = query.getResultList();
+
+	        }catch (Exception e){
+	            e.printStackTrace();
+	        }
+	        finally{
+	                em.close();
+	            }
+	        
+	        return account;
+	    }
 }

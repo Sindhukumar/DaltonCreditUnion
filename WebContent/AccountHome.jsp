@@ -12,16 +12,18 @@
 </head>
 <body>
 	
-
+	
 	<table class="table table-bordered table-striped table-hover">
 		<thead>
 			<tr>
 				<th>User Name</th>
 				<th>Account Number</th>
-				<th>Account Type</th>
-				<th>Transact</th>
-				<th>Activity</th>
+				<th></th>
 				<th>Transfer</th>
+				<th>Activity</th>
+				<th></th>
+				
+				
 			</tr>
 		</thead>
 
@@ -31,29 +33,40 @@
 
 			<c:forEach var="account" items="${accounts}">
 				<tr>
-					<td><c:out value="${account.user.username}" /></td>
+					<td><c:out value="${account.dcuuser.name}" /></td>
 					<td><c:out value="${account.accountid}" /></td>
-					<td><c:out value="${account.accounttype}" /></td>
+					<td><c:out value="${account.type}" /></td>
 					
-					
-					<c:if test="${account.status == 1 }"> </c:if>
-					<td> <form action="AccountServlet" method="post"> 
-							<input type="hidden" name="Productid" value="<c:out value="${account.accountid}"/>"> 
+					<td> <form action ="TransactMediator" method="post">
+							<input type="hidden" name="accountid" value="<c:out value="${account.accountid}"/>"> 
+							<input type="hidden" name="action" value="Transact">
+							 <input type="submit" value="Transact"> 
+							 </form> </td>
+				
+					<c:if test="${account.status == 1 }"> 
+					<td> <form action ="AccountServlet" method="post">
+							<input type="hidden" name="Accountid" value="<c:out value="${account.accountid}"/>"> 
 							<input type="hidden" name="action" value="Close">
 							 <input type="submit" value="Close"> 
 							 </form> </td>
-						<c:if test="${account.close == 0 }"> </c:if>
-						<td><form action="AccountServlet" method="post">
-							<input type="submit" name="Reopen" value="Reopen">
+				</c:if>
+						<c:if test="${account.status == 0 }"> 
+						<td><form action ="AccountServlet" method="post">
+							<input type="hidden" name="Accountid" value="<c:out value="${account.accountid}"/>"> 
 							<input type="hidden" name="action" value="Reopen">
+								 <input type="submit" value="Reopen"> 
 							</form></td>
-						
+						</c:if>
 				</tr>
 
 			</c:forEach>
 	</table>
-
-
 	
+	<form action="AddAccount.jsp" method="post">
+			 <input type="hidden" name="action" value="Add Account"> <input
+			type="submit" value="Add Account">
+	</form>
+
+
 </body>
 </html>

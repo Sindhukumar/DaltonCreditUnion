@@ -15,14 +15,14 @@ public class CloseAccount {
 	public void test() {
 		long accountid=21;
 		
-		long accountstatus=0;
+		long accountstatus=1;
 		
 		Dcuaccount account = ManageAccount.getAccount(accountid);
 		
 			account.setAccountid(accountid);
 			account.setStatus(accountstatus);
 			ManageAccount.update(account);
-			System.out.println("Account updated");
+			System.out.println("Account reopened");
 	}
 
 }
