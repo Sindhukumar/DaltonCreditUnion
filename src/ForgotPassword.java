@@ -9,22 +9,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Utilities.HashPassword;
 import customtools.ManageAccount;
 import customtools.ManageUser;
 import model.Dcuaccount;
 import model.Dcuuser;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class ForgotPassword
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/ForgotPassword")
+public class ForgotPassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LoginServlet() {
+	public ForgotPassword() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -46,25 +47,20 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// TODO Auto-generated method stub
-		doGet(request, response);
 		String useremail = request.getParameter("useremail");
 		String userpassword = request.getParameter("userpassword");
 
-		String nextURL = "/error.jsp";
+		String nextURL = "/ForgotPassword.jsp";
 
-		Dcuuser user = ManageUser.isValidUser(useremail, userpassword);
-		HttpSession session = request.getSession();
+		Dcuuser user = ManageUser.getUserByEmail(useremail);
 		if (user != null) {
-			session.setAttribute("user", user);
-			float userid = user.getUserid();
-			List <Dcuaccount> accounts = ManageAccount.getAllAccount(userid);
-			session.setAttribute("accounts", accounts);
-			nextURL = "/AccountHome.jsp";
+			user.setPasswordhash(HashPassword.Hash(user.getEmail(), userpassword));
+			ManageUser.update(user);
+			nextURL = "/LoginPage.jsp";
 		}
 
 		else {
-			nextURL = "/LoginPage.jsp?error=nomatch";
+			nextURL = "/ForgotPassword.jsp?error=notfound";
 		}
 		response.sendRedirect(request.getContextPath() + nextURL);
 
