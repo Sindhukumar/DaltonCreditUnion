@@ -26,32 +26,29 @@
   }
   $( function() {
 	  $( '#datepicker' ).datepicker({ minDate: -0, maxDate: "+1M +10D" })
-	  onSelect: function(){
-          var date = $(this).datepicker('getDate');
-          document.getElementById("tdate").value=date;
+	
 			});
 		</script>
 </head>
 <body>
-Account ID <input type="text" value="${account.accountid}" id="accountid" name ="accountid" disabled> <a href="AccountHome.jsp">Not this account?</a>
+Account ID <input type="text" value="${accountid}" id="accountid" name ="accountid" disabled> <a href="AccountHome.jsp">Not this account?</a>
 <br><br><br>
 Account Balance <input type="text" value="${balance}"  id="accountbalance" name ="accountbalance" disabled>
 <br><br><br>
-Deposit <input type="radio" onclick="javascript:checkTransactions();" name="check" id="deposit" value=0/>
+Deposit <input type="radio" onclick="javascript:checkTransactions();" name="check" id="deposit" value="0"/>
 			      
-Withdraw <input type="radio" onclick="javascript:checkTransactions();" name="check" id="withdraw" value=1/>
+Withdraw <input type="radio" onclick="javascript:checkTransactions();" name="check" id="withdraw" value="1"/>
 <br><br><br>
 
 
-	<div id="amount" class="form-group" style="visibility: hidden">
+	<div id="amount" class="form-group" style="visibility: visible">
 		Amount:<input type="text" class="required form-control" placeholder="Transaction Amount*"
 			name="amount" id="amount" value="">
 	</div>
 
-	<div id="datepicker" class="form-group" style="visibility: hidden" name="datepicker">
+	<div id="datepicker" class="form-group" style="visibility: visible" name="datepicker">
 		Date:
-		<input type="text" class="required form-control" placeholder="Transaction Date*"
-			name="tdate" id="tdate" value="">
+
 	</div>
 	
 	 <form action ="Transaction" method="post">
@@ -59,11 +56,6 @@ Withdraw <input type="radio" onclick="javascript:checkTransactions();" name="che
 	<input type="hidden" value="submit"  name="action"/>
 	<input type="submit" value="submit" id="submit" />
 	 </form>
-
-
-
-
-
 
 </body>
 </html>

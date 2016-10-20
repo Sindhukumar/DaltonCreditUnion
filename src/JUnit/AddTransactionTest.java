@@ -1,3 +1,4 @@
+package JUnit;
 import static org.junit.Assert.*;
 
 import java.util.Date;
@@ -26,7 +27,7 @@ public class AddTransactionTest {
 		transaction.setDcuaccount(account);
 		transaction.setAmount(10000);
 		transaction.setTransactiondate(transactiondate);
-		transaction.setType(0);
+		transaction.setType(1);
 		
 		
 		ManageTransaction.add(transaction);

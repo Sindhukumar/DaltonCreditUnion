@@ -57,13 +57,20 @@ public class Transaction extends HttpServlet {
 		System.out.println(transactiondate);
 				
 		Dcutransaction transaction = new Dcutransaction();
+
 		
 		transaction.setAmount(amount);
+		System.out.println("amount to add is" +amount);
 		transaction.setDcuaccount(ManageAccount.getAccount(accountid));
+		System.out.println("right account is fetched");
 		transaction.setType(transactiontype);
+		System.out.println("transaction type is" +transactiontype);
 		transaction.setTransactiondate(transactiondate);
 		
 		ManageTransaction.add(transaction); //adding into the table
+		System.out.println("new transaction added");
+		
+		
 		
 		long balance = ((ManageTransaction.getDepositWithdrawal(0, accountid)) - (ManageTransaction.getDepositWithdrawal(1, accountid)));
 		
