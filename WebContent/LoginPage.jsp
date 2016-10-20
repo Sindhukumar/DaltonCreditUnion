@@ -19,6 +19,7 @@
 				id="userpassword"> <br> <br> <input type="submit"
 				value="Submit" id="submit" />
 		</form>
+		<a href="/AddNewAccount">New User?</a>
 	</center>
 </body>
 </html>
