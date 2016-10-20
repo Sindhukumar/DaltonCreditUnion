@@ -45,9 +45,15 @@ public class AddAccount extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Date accountdate = new Date();
 		String nextUrl;
-		int type = Integer.parseInt(request.getParameter("username")); //checking = 1; savings = 0
-		int status = Integer.parseInt(request.getParameter("username")); //close = 0, open = 1
-		int userId = Integer.parseInt(request.getParameter("username"));
+		int type; //checking = 1; savings = 0
+		String savings = request.getParameter("accountType");
+	    if ("Savings".equals(savings)) {
+	    	type = 0;
+	    }
+	    else{
+	    	type = 1;
+	    }
+		int status = 1; //close = 0; open = 1
 		
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") != null){
@@ -59,14 +65,14 @@ public class AddAccount extends HttpServlet {
 			account.setDcuuser(dcuuser);
 			ManageAccount.add(account);
 			
-			nextUrl = "/Home.jsp";
+			nextUrl = "/AccountHome.jsp";
 		}
 		else{
-			String email = request.getParameter("username");
-			String name = request.getParameter("username");
-			String password = request.getParameter("username");
+			String email = request.getParameter("email");
+			String name = request.getParameter("name");
+			String password = request.getParameter("password");
 			String passwordhash = HashPassword.Hash(email,password);
-			String phone = request.getParameter("username");
+			String phone = request.getParameter("phone");
 			
 			if(ManageUser.isValidUser(email, passwordhash) == null){
 				Dcuuser dcuuser = new Dcuuser();
@@ -84,7 +90,7 @@ public class AddAccount extends HttpServlet {
 				account.setDcuuser(dcuuser);
 				ManageAccount.add(account);
 				
-				nextUrl = "/Home.jsp";
+				nextUrl = "/AccountHome.jsp";
 			}
 			else{
 				nextUrl = "/Login.jsp";
