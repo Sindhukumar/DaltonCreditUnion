@@ -47,7 +47,7 @@ public class TransactionMediator extends HttpServlet {
 
 		session.setAttribute("balance", balance);
 		
-		String nextURL= "/Transaction.jsp";
+		String nextURL= "/Transactions.jsp";
 		getServletContext().getRequestDispatcher(nextURL).forward(request, response);
 	}
 

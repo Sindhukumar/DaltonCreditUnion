@@ -58,6 +58,7 @@ public class AddAccount extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") != null){
+			System.out.println("User is logged in");
 			Dcuuser dcuuser = (Dcuuser) session.getAttribute("user");
 			Dcuaccount account = new Dcuaccount();
 			account.setAccountdate(accountdate);

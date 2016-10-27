@@ -24,7 +24,7 @@
 				<th></th>
 				
 				
-			</tr>
+			</tr>-
 		</thead>
 
 		<tr>
@@ -36,7 +36,10 @@
 					<td><c:out value="${account.dcuuser.name}" /></td>
 					<td><c:out value="${account.accountid}" /></td>
 					
+<<<<<<< HEAD
 					
+=======
+>>>>>>> 36c20fca0b7f187d53fe0823b4b026541ea8ee35
 					<td> <form action ="TransactionMediator" method="post">
 							<input type="hidden" name="accountid" value="<c:out value="${account.accountid}"/>"> 
 							<input type="hidden" name="action" value="Transact">
